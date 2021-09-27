@@ -3,14 +3,14 @@ import numpy as np
 class StockTradingAlgo(QCAlgorithm):
 
     def Initialize(self):
-        #Set the cash for backtest
+        #Sets the cash for backtest
         self.SetCash(100000)
         
         #Start and end dates for backtest
         self.SetStartDate(2017,9,1)
         self.SetEndDate(2020,9,1)
         
-        #Add asset
+        #Adds asset
         self.symbol = self.AddEquity("SPY", Resolution.Daily).Symbol
         
         #Number of days to loockback in order to determine breakout
@@ -24,7 +24,7 @@ class StockTradingAlgo(QCAlgorithm):
         self.initialStopRisk = 0.98
         self.trailingStopRisk = 0.9
         
-        #Schedule function 20 minutes after every market open
+        #Schedules function 20 minutes after every market open
         self.Schedule.On(self.DateRules.EveryDay(self.symbol), self.TimeRules.AfterMarketOpen(self.symbol, 20), Action(self.EveryMarketOpen))
 
 
